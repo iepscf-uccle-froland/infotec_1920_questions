@@ -1,52 +1,44 @@
 from turtle import *
-from math import sin , cos, pi
+from math import pi, sin, cos, sqrt, acos, asin, atan2
 
-def hexagone(point, longueur, col, centre, rayon ) :
+def hexagone(point, longueur, col) :
+    x = point[0]
+    y = point[1]
     color(col[0])
-    begin_fill()
     a = pi / 3
-    rayon = 50
-
-    goto(point)
-    goto(int(rayon * cos(0 * a)), int(rayon * sin(0 * a)))
-    goto(int(rayon * cos(1 * a)), int(rayon * sin(1 * a)))
-    goto(int(rayon * cos(2 * a)), int(rayon * sin(2 * a)))
-    goto(point)
+    r = 50
+    begin_fill()
+    goto(x+r * cos(0 * a), (y+r * sin(0 * a)))
+    goto(x+r * cos(1 * a), (y+r * sin(1 * a)))
+    goto(x+r * cos(2 * a), (y+r * sin(2 * a)))
+    goto(x+r * 0 * cos(0 * a) , (y+r * 0 * sin(0)))
     end_fill()
 
     begin_fill()
     color(col[1])
-    goto(point)
-    goto(int(rayon * cos(0 * a)), int(rayon * -sin(0 * a)))
-    goto(int(rayon * cos(1 * a)), int(rayon * -sin(1 * a)))
-    goto(int(rayon * cos(2 * a)), int(rayon * -sin(2 * a)))
-    goto(point)
+    goto((x+r * cos(0 * a)),(y+r * -sin(0 * a)))
+    goto(x+r * cos(1 * a), (y+r * -sin(1 * a)))
+    goto(x+r * cos(2 * a), y+r * -sin(2 * a))
+    goto(x+r * 0 * cos(0 * a) , (y+r * 0 * sin(0)))
     end_fill()
 
     begin_fill()
     color(col[2])
-    goto(int(rayon * cos(2 * a)), int(rayon * sin(2 * a)))
-    goto(int(rayon * cos(3 * a)), int(rayon * sin(3 * a)))
-    goto(int(rayon * cos(4 * a)), int(rayon * sin(4 * a)))
-    goto(point)
+    goto(x+r * cos(2 * a), (y+r * sin(2 * a)))
+    goto(x+r * cos(3 * a), (y+r * sin(3 * a)))
+    goto(x+r * cos(4 * a), (y+r * sin(4 * a)))
+    goto(x+r * 0 * cos(0 * a) , (y+r * 0 * sin(0)))
     end_fill()
 
     done()
 
-
-hexagone((0,0), 50, ('blue', 'yellow', 'green'), (0,0,0), 0)
-
-def pavage (inf_gauche, sup_droit, longueur, col, centre, rayon):
-    c = 1
-    a = pi/3
-    sup_d = sup_droit
-    es_p = 3 * longueur
-    inf_g = inf_gauche
-    p_depart = int(inf_gauche - longueur * ( 1 + cos(a)))
-    p_final = int (sup_droit + longueur * ( 1 + cos(a)))
-
-    while p_final > p_depart:
-    print (p_depart , p_final)
-    if c % 2 != 0:
-    for i in range (inf_gauche , sup_droit , es_p):
-    hexagone((0, 0), 50, ('blue', 'yellow', 'green'), (0, 0, 0), 0)
+color1="green"
+color2="yellow"
+color3="blue"
+col = color1,color2,color3
+inf_gauche = -315
+sup_droit = 315
+centre = (-50, - 50 , -50)
+point = -315, -315
+longueur = 30
+hexagone(point, longueur, col)
